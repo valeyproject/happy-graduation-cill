@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+  <title>Happy Graduation, Pricillia Verina Matatula, S.Psi 🎓✨</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+          },
+          colors: {
+            cream: {
+              50: '#FDFCF7',
+              100: '#FAF6EE',
+              200: '#F3ECE0',
+            },
+            champagne: {
+              DEFAULT: '#D4AF37',
+              light: '#E6C968',
+              dark: '#B08E20',
+              muted: '#EEDDA7',
+            },
+            rosewax: '#E07A5F',
+            charcoal: '#1F2421',
+            softnavy: '#222933',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Custom animations & polish */
+    @keyframes floatParticle {
+      0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.2; }
+      50% { transform: translateY(-18px) rotate(45deg); opacity: 0.8; }
+    }
+    @keyframes subtleGlow {
+      0%, 100% { box-shadow: 0 10px 30px -10px rgba(212, 175, 55, 0.15); }
+      50% { box-shadow: 0 16px 36px -8px rgba(212, 175, 55, 0.3); }
+    }
+    @keyframes pulseGently {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+    .floating-star {
+      animation: floatParticle 6s ease-in-out infinite;
+    }
+    .gold-glow {
+      animation: subtleGlow 4s ease-in-out infinite;
+    }
+    .pulse-btn {
+      animation: pulseGently 2.8s ease-in-out infinite;
+    }
+    .polaroid-shadow {
+      box-shadow: 0 12px 24px -6px rgba(45, 30, 20, 0.12), 0 4px 8px -2px rgba(45, 30, 20, 0.06);
+    }
+    .letter-paper-texture {
+      background-color: #FFFDF9;
+      background-image: radial-gradient(#F0E9DA 0.75px, transparent 0.75px);
+      background-size: 16px 16px;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    /* Step card transitions */
+    .step-card {
+      transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .step-card.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+      display: flex;
+    }
+    .step-card.hidden-prev {
+      opacity: 0;
+      transform: translateY(-16px) scale(0.97);
+      pointer-events: none;
+      display: none;
+    }
+    .step-card.hidden-next {
+      opacity: 0;
+      transform: translateY(20px) scale(0.97);
+      pointer-events: none;
+      display: none;
+    }
+    /* Polaroid tape effect */
+    .washi-tape {
+      background: rgba(235, 225, 205, 0.75);
+      box-shadow: inset 0 0 4px rgba(0,0,0,0.06);
+      backdrop-filter: blur(2px);
+    }
+    /* Carousel item transitions */
+    .carousel-slide {
+      transition: opacity 0.38s cubic-bezier(0.16, 1, 0.3, 1), transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .carousel-slide.slide-active {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
+      position: relative;
+    }
+    .carousel-slide.slide-hidden {
+      opacity: 0;
+      transform: scale(0.95);
+      pointer-events: none;
+      position: absolute;
+      inset: 0;
+    }
+  </style>
+</head>
+<body class="bg-[#F8F5EE] text-[#222933] font-sans antialiased min-h-screen flex items-center justify-center p-0 md:p-6 overflow-x-hidden selection:bg-[#EEDDA7] selection:text-[#1F2421]">
+
+  <!-- Audio Element untuk Backsound (File: audio.mp3) -->
+  <audio id="bg-music" loop preload="auto">
+    <source src="audio.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Tombol Play / Pause Musik Mengambang -->
+  <button id="music-btn" onclick="toggleAudio()" aria-label="Toggle Musik" class="fixed top-4 right-4 z-50 w-10 h-10 rounded-full bg-white/90 backdrop-blur-md border border-[#E0D5C1] shadow-lg flex items-center justify-center text-base transition-all hover:scale-105 active:scale-95 text-[#554C3E]">
+    🔇
+  </button>
+
+  <!-- Sparkle Particle Canvas Background -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden" id="ambient-particles">
+    <span class="absolute top-[8%] left-[10%] text-champagne text-xs floating-star" style="animation-delay: 0s;">✦</span>
+    <span class="absolute top-[18%] right-[12%] text-champagne-light text-sm floating-star" style="animation-delay: 1.5s;">✧</span>
+    <span class="absolute top-[42%] left-[6%] text-champagne text-base floating-star" style="animation-delay: 3.2s;">✨</span>
+    <span class="absolute top-[65%] right-[8%] text-champagne text-xs floating-star" style="animation-delay: 2.1s;">✦</span>
+    <span class="absolute top-[85%] left-[15%] text-champagne-light text-sm floating-star" style="animation-delay: 4.0s;">✧</span>
+    <span class="absolute top-[30%] right-[22%] text-champagne-muted text-xs floating-star" style="animation-delay: 0.8s;">⋆</span>
+    <span class="absolute top-[75%] left-[28%] text-champagne-muted text-xs floating-star" style="animation-delay: 2.6s;">⋆</span>
+    <div class="absolute -top-32 -left-32 w-80 h-80 rounded-full bg-[#EEDDA7]/25 blur-3xl"></div>
+    <div class="absolute -bottom-24 -right-24 w-96 h-96 rounded-full bg-[#FCECE8]/40 blur-3xl"></div>
+  </div>
+
+  <!-- Confetti Canvas for Grand Finale -->
+  <canvas class="fixed inset-0 pointer-events-none z-50 w-full h-full" id="confetti-canvas"></canvas>
+
+  <!-- Mobile Frame / Main Container -->
+  <main class="relative z-10 w-full max-w-[425px] min-h-[100dvh] md:min-h-[820px] md:max-h-[860px] bg-gradient-to-b from-cream-50 via-cream-100 to-[#F6F0E5] md:rounded-[40px] shadow-2xl md:border md:border-[#E8DFD0] flex flex-col justify-between overflow-hidden">
+    
+    <!-- Top Progress & Header Bar -->
+    <header class="pt-5 px-6 pb-2 flex flex-col gap-3">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-champagne animate-ping"></span>
+          <span class="text-[11px] font-semibold tracking-widest uppercase text-[#88785E]">Graduation Tribute</span>
+        </div>
+        <div class="flex items-center gap-1.5 bg-[#EEE7D8]/70 px-3 py-1 rounded-full border border-[#DFD5C2]">
+          <span class="text-[10px] font-medium text-[#7A6C53]" id="step-indicator">Step 1 of 5</span>
+        </div>
+      </div>
+      <!-- Segmented Progress Bar -->
+      <div class="grid grid-cols-5 gap-1.5 h-1.5 w-full bg-[#EBE3D3] rounded-full p-0.5">
+        <div class="h-full rounded-full transition-all duration-500 bg-champagne" id="bar-1"></div>
+        <div class="h-full rounded-full transition-all duration-500 bg-transparent" id="bar-2"></div>
+        <div class="h-full rounded-full transition-all duration-500 bg-transparent" id="bar-3"></div>
+        <div class="h-full rounded-full transition-all duration-500 bg-transparent" id="bar-4"></div>
+        <div class="h-full rounded-full transition-all duration-500 bg-transparent" id="bar-5"></div>
+      </div>
+    </header>
+
+    <!-- Interactive Cards Viewport (Step by Step) -->
+    <div class="flex-1 relative flex flex-col px-5 py-3 overflow-y-auto no-scrollbar">
+
+      <!-- ================= STEP 1: WELCOME GATE ================= -->
+      <section class="step-card active flex-col justify-between flex-1 text-center py-4" id="step-1">
+        <div class="flex flex-col items-center mt-2">
+          <!-- Festive Ribbon & Icon Emblem -->
+          <div class="relative mb-6">
+            <div class="w-28 h-28 rounded-full bg-gradient-to-tr from-[#F1E4C3] via-[#FAF4E5] to-[#FFFFFF] p-1 shadow-lg gold-glow flex items-center justify-center border border-champagne/30">
+              <div class="w-full h-full rounded-full bg-[#FCF8EE] flex flex-col items-center justify-center border border-dashed border-champagne/40">
+                <span class="text-5xl select-none transform hover:scale-110 transition-transform duration-300">🎓</span>
+              </div>
+            </div>
+            <!-- Decorative celebratory ribbon badge -->
+            <div class="absolute -bottom-2 bg-gradient-to-r from-champagne-dark via-champagne to-champagne-light text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              Class of 2026
+            </div>
+          </div>
+
+          <div class="space-y-3 px-2">
+            <p class="text-xs uppercase tracking-widest text-champagne-dark font-semibold">Special Dedication for</p>
+            <h1 class="font-serif text-[28px] leading-[1.2] font-bold text-[#1E232A]">
+              Hello, Pricillia Verina Matatula, <span class="italic text-champagne-dark block mt-0.5">S.Psi 🎓✨</span>
+            </h1>
+            <p class="text-[13px] leading-relaxed text-[#5F5950] font-normal pt-1 max-w-[280px] mx-auto">
+              A little journey through time to celebrate your sweetest milestone. So proud of who you've become!
+            </p>
+          </div>
+        </div>
+
+        <!-- Micro Memory Milestones Preview -->
+        <div class="my-5 bg-[#FAF4E6]/80 rounded-2xl p-4 border border-[#E9DDC6] flex items-center justify-around text-center shadow-sm">
+          <div class="flex flex-col items-center">
+            <span class="text-lg">🏫</span>
+            <span class="text-[11px] text-[#7A6C53] font-medium mt-0.5">SMA Days</span>
+          </div>
+          <div class="h-6 w-[1px] bg-[#DFCFAF]"></div>
+          <div class="flex flex-col items-center">
+            <span class="text-lg">💬</span>
+            <span class="text-[11px] text-[#7A6C53] font-medium mt-0.5">Late-Night Chats</span>
+          </div>
+          <div class="h-6 w-[1px] bg-[#DFCFAF]"></div>
+          <div class="flex flex-col items-center">
+            <span class="text-lg">💌</span>
+            <span class="text-[11px] text-[#7A6C53] font-medium mt-0.5">Surat Kasih</span>
+          </div>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="mt-auto pt-2">
+          <button class="pulse-btn w-full py-3.5 px-6 rounded-2xl bg-gradient-to-r from-[#21272D] via-[#2A333C] to-[#1E2429] text-white font-semibold text-[15px] flex items-center justify-center gap-2.5 shadow-xl hover:shadow-2xl active:scale-[0.98] transition-all group" onclick="goToStep(2)">
+            <span class="tracking-wide">Buka Kenangan 🤍</span>
+            <span class="text-champagne-muted text-base transition-transform group-hover:translate-x-1">➔</span>
+          </button>
+          <p class="text-[11px] text-[#9A8F7B] mt-2.5">Turn your volume up & tap to start this journey</p>
+        </div>
+      </section>
+
+      <!-- ================= STEP 2: HIGH SCHOOL MEMORIES ================= -->
+      <section class="step-card hidden-next flex-col justify-between flex-1 py-2" id="step-2">
+        <div class="space-y-1 text-center">
+          <span class="text-[11px] uppercase tracking-widest text-champagne-dark font-semibold">The Beginning</span>
+          <h2 class="font-serif text-2xl font-bold text-charcoal">Where It All Started</h2>
+        </div>
+
+        <!-- Polaroid Card Container -->
+        <div class="relative my-auto flex flex-col items-center">
+          <div class="washi-tape w-24 h-6 -mb-3 z-20 rounded-sm transform -rotate-2"></div>
+          
+          <div class="w-full max-w-[320px] bg-white p-3.5 pb-5 rounded-lg polaroid-shadow border border-[#EBE3D5] transform rotate-1 transition-transform hover:rotate-0 duration-300">
+            <!-- Wadah Foto Polaroid SMA (File: foto-sma.jpeg) -->
+            <div class="relative w-full aspect-[4/3] rounded-md overflow-hidden bg-stone-100 border border-[#DDD3BF]">
+              <img src="foto-sma.jpeg" alt="Kenangan Masa SMA" onerror="this.src='foto-sma.jpg'" class="w-full h-full object-cover object-center">
+              <span class="absolute top-2 right-2 text-[10px] bg-white/90 backdrop-blur-xs px-2.5 py-0.5 rounded text-[#8B7C62] font-semibold shadow-sm">
+                #PutihAbuAbu
+              </span>
+              <div class="absolute bottom-2 left-2 bg-charcoal/75 backdrop-blur-xs text-[#F7F2E7] text-[10px] px-2.5 py-0.5 rounded-full font-medium">
+                Our teenage chapter 🤍
+              </div>
+            </div>
+            
+            <div class="mt-3.5 px-1 text-center">
+              <p class="font-serif text-[15px] italic text-[#473F33] leading-snug">
+                "From chaotic high school laughs to holding your psychology degree today."
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Descriptive Quote Box (Sentimental & Bilingual) -->
+        <div class="bg-[#FFFDF9]/95 rounded-2xl p-4 border border-[#E9DFCF] shadow-sm mb-3">
+          <div class="flex items-start gap-2.5 text-left">
+            <span class="text-champagne-dark text-2xl leading-none font-serif">“</span>
+            <p class="text-[12.5px] leading-relaxed text-[#4F473A]">
+              Lucu banget ya kalau diingat lagi. <em>It feels like just yesterday</em> kita masih duduk bareng pakai seragam ini, ketawa lepas tanpa mikir beban hidup, dan ngeluh soal ujian. Waktu itu impian kita masih abstrak banget. Tapi hari ini, gadis manis yang dulu panik ujian bareng sekarang udah resmi berdiri anggun menyandang gelar <strong class="text-charcoal font-semibold">Sarjana Psikologi</strong>. <em>Look at how far you've come, Cill. Proud doesn't even begin to describe it!</em>
+            </p>
+          </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="grid grid-cols-2 gap-3 pt-1">
+          <button class="py-3 px-4 rounded-xl border border-[#D5C9B4] bg-[#F7F2E7] text-[#554C3E] font-medium text-sm flex items-center justify-center gap-1.5 hover:bg-[#EFE7D8] transition-colors" onclick="goToStep(1)">
+            <span>‹</span> Kembali
+          </button>
+          <button class="py-3 px-4 rounded-xl bg-gradient-to-r from-[#21272D] to-[#2D3640] text-white font-semibold text-sm flex items-center justify-center gap-1.5 shadow-md hover:shadow-lg active:scale-[0.98] transition-all" onclick="goToStep(3)">
+            <span>Next Chapter</span> ➔
+          </button>
+        </div>
+      </section>
+
+      <!-- ================= STEP 3: CHAT HIGHLIGHTS ================= -->
+      <section class="step-card hidden-next flex-col justify-between flex-1 py-1 sm:py-2" id="step-3">
+        <div class="space-y-1 text-center mb-1">
+          <span class="text-[11px] uppercase tracking-widest text-champagne-dark font-semibold">Different Majors, Same Soul</span>
+          <h2 class="font-serif text-xl sm:text-2xl font-bold text-charcoal">Our Chat Chronicles</h2>
+          <p class="text-[11.5px] text-[#696052]">Anak IT &amp; Anak Psikologi yang selalu saling nguatin sampai wisuda.</p>
+        </div>
+
+        <!-- iOS Style Chat Container (Optimized for Mobile Screens) -->
+        <div class="my-auto bg-[#FAF8F5] rounded-[26px] border border-[#E5DBCA] shadow-sm p-3 sm:p-4 space-y-3">
+          <!-- Chat Header Bar -->
+          <div class="flex items-center justify-between border-b border-[#EFE6D8] pb-2 px-1">
+            <div class="flex items-center gap-2.5">
+              <div class="relative">
+                <div class="w-8 h-8 rounded-full bg-[#E5D7BF] text-charcoal flex items-center justify-center font-serif font-bold text-xs shadow-xs border border-white">
+                  RG
+                </div>
+                <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-white rounded-full"></span>
+              </div>
+              <div class="text-left">
+                <h4 class="text-[13px] font-semibold text-charcoal leading-tight">ruto's gf 🤍</h4>
+                <span class="text-[10px] text-[#16A34A] font-medium block">Online • Pejuang Toga</span>
+              </div>
+            </div>
+            <span class="text-[10px] text-[#8C7E68] bg-[#EEE5D3] px-2.5 py-0.5 rounded-full font-medium">iMessage</span>
+          </div>
+
+          <!-- Chat Stream (Kiri = ruto's gf / Putih, Kanan = Kamu / Emas) -->
+          <div class="space-y-3 py-1 text-[12.5px] sm:text-[13px] leading-relaxed">
+            <!-- Bubble 1: Kamu (Kanan - Emas) -->
+            <div class="flex flex-col items-end ml-auto max-w-[85%]">
+              <div class="bg-gradient-to-r from-champagne-dark via-champagne to-champagne-light text-charcoal font-medium px-3.5 py-2.5 rounded-2xl rounded-tr-xs shadow-sm">
+                Cill, are you holding up okay? Kepala aman kan dari kuesioner &amp; teori psikologi? 🥺
+              </div>
+              <span class="text-[9px] text-[#9A8E7A] pr-1 mt-0.5">14:10</span>
+            </div>
+
+            <!-- Bubble 2: ruto's gf (Kiri - Putih Bersih) -->
+            <div class="flex flex-col items-start mr-auto max-w-[85%]">
+              <div class="bg-white text-charcoal px-3.5 py-2.5 rounded-2xl rounded-tl-xs shadow-xs border border-[#E8DFC9]">
+                Pusing bangettt, tapi kamu sendiri gimana? Codingan error jangan bikin lupa makan ya! 😭🫂
+              </div>
+              <span class="text-[9px] text-[#9A8E7A] pl-1 mt-0.5">14:14</span>
+            </div>
+
+            <!-- Bubble 3: ruto's gf (Kiri - Putih Bersih) -->
+            <div class="flex flex-col items-start mr-auto max-w-[85%]">
+              <div class="bg-white text-charcoal px-3.5 py-2.5 rounded-2xl rounded-tl-xs shadow-xs border border-[#E8DFC9]">
+                Sedih banget tau jadwal wisuda kita malah ketunda gegara birokrasi kampus... overthinking parah jadinya 🥺💔
+              </div>
+              <span class="text-[9px] text-[#9A8E7A] pl-1 mt-0.5">14:16</span>
+            </div>
+
+            <!-- Bubble 4: Kamu (Kanan - Emas) -->
+            <div class="flex flex-col items-end ml-auto max-w-[85%]">
+              <div class="bg-gradient-to-r from-champagne-dark via-champagne to-champagne-light text-charcoal font-medium px-3.5 py-2.5 rounded-2xl rounded-tr-xs shadow-sm">
+                Gapapa Cill, <em>it's just a little delay, not the end of our dreams</em>. Kita lewatin badai kampus ini bareng, ntar toga itu pasti jadi milik kita! 🥂✨
+              </div>
+              <div class="flex items-center gap-1 pr-1 mt-0.5">
+                <span class="text-[9px] text-[#9A8E7A]">14:18</span>
+                <span class="text-[9px] text-champagne-dark font-medium">Read ✓✓</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Highlight Box -->
+          <div class="bg-[#F3ECE0] rounded-xl p-2.5 text-center text-[11px] text-[#6E6453] italic">
+            "Walau jurusannya beda dan drama kampus sempat bikin nyesek... <strong>we survived and made it together!</strong> 🎉🎓"
+          </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="grid grid-cols-2 gap-3 pt-2">
+          <button class="py-3 px-4 rounded-xl border border-[#D5C9B4] bg-[#F7F2E7] text-[#554C3E] font-medium text-sm flex items-center justify-center gap-1.5 hover:bg-[#EFE7D8] transition-colors" onclick="goToStep(2)">
+            <span>‹</span> Kembali
+          </button>
+          <button class="py-3 px-4 rounded-xl bg-gradient-to-r from-[#21272D] to-[#2D3640] text-white font-semibold text-sm flex items-center justify-center gap-1.5 shadow-md hover:shadow-lg active:scale-[0.98] transition-all" onclick="goToStep(4)">
+            <span>Surabaya Trip</span> ➔
+          </button>
+        </div>
+      </section>
+
+      <!-- ================= STEP 4: SURABAYA TRIP (5 REAL SLIDES) ================= -->
+      <section class="step-card hidden-next flex-col justify-between flex-1 py-1" id="step-4">
+        <div class="space-y-1 text-center">
+          <span class="text-[11px] uppercase tracking-widest text-champagne-dark font-semibold">The Escapade</span>
+          <h2 class="font-serif text-2xl font-bold text-charcoal">Surabaya Chronicles 🏙️✨</h2>
+        </div>
+
+        <!-- Interactive Polaroid Carousel Section -->
+        <div class="my-auto flex flex-col items-center w-full px-1">
+          <div class="washi-tape w-28 h-5 -mb-2.5 z-20 rounded-xs transform -rotate-1"></div>
+          
+          <div class="relative w-full max-w-[340px] bg-white p-3.5 pb-4 rounded-2xl polaroid-shadow border border-[#E6DDCD]">
+            <!-- Slides Viewport (5 Slides Sesuai Foto User) -->
+            <div class="relative w-full min-h-[310px] flex items-center justify-center overflow-hidden">
+              
+              <!-- Slide 1: surabaya-1.jpeg (Foto Pegang Kamera di Bawah Sakura & Lampion Ikan) -->
+              <div class="carousel-slide slide-active w-full flex flex-col" id="surabaya-slide-0">
+                <div class="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-stone-100 border border-[#D9CDBC]">
+                  <img src="surabaya-1.jpeg" alt="Capturing Memories" onerror="this.src='surabaya-1.jpg'" class="w-full h-full object-cover object-center">
+                  <span class="absolute top-2.5 left-2.5 text-[10px] bg-white/90 backdrop-blur-xs px-2.5 py-0.5 rounded-full text-[#6D5D44] font-semibold shadow-xs">
+                    📸 Capturing Moments
+                  </span>
+                  <span class="absolute bottom-2 right-2 text-[9px] text-white bg-black/60 backdrop-blur-xs px-2 py-0.5 rounded-md font-mono">Surabaya Nights</span>
+                </div>
+                <div class="mt-3 px-1 text-center">
+                  <h4 class="font-semibold text-charcoal text-[13px]">Behind the Lens &amp; Glowing Lanterns</h4>
+                  <p class="font-serif text-[12.5px] italic text-[#473E31] leading-relaxed mt-0.5">
+                    "Busy capturing all the pretty lights, padahal the brightest thing that night was your happy smile."
+                  </p>
+                </div>
+              </div>
+
+              <!-- Slide 2: surabaya-2.jpeg (Foto OOTD Hitam Kupu-Kupu di Depan Gerbang Merah) -->
+              <div class="carousel-slide slide-hidden w-full flex flex-col" id="surabaya-slide-1">
+                <div class="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-stone-100 border border-[#D7C9B5]">
+                  <img src="surabaya-2.jpeg" alt="Vibes & Red Doors" onerror="this.src='surabaya-2.jpg'" class="w-full h-full object-cover object-center">
+                  <span class="absolute top-2.5 left-2.5 text-[10px] bg-white/90 backdrop-blur-xs px-2.5 py-0.5 rounded-full text-[#6D5D44] font-semibold shadow-xs">
+                    🏮 Red Aesthetic
+                  </span>
+                  <span class="absolute bottom-2 right-2 text-[9px] text-white bg-black/60 backdrop-blur-xs px-2 py-0.5 rounded-md font-mono">Night Stroll</span>
+                </div>
+                <div class="mt-3 px-1 text-center">
+                  <h4 class="font-semibold text-charcoal text-[13px]">Catching Vibes &amp; Big Dreams</h4>
+                  <p class="font-serif text-[12.5px] italic text-[#473E31] leading-relaxed mt-0.5">
+                    "Pose santai sejenak melupakan drama revisian skripsi. Always loving this fearless and cute side of you!"
+                  </p>
+                </div>
+              </div>
+
+              <!-- Slide 3: surabaya-3.jpeg (Foto Berdua Bareng Boneka Santa Claus) -->
+              <div class="carousel-slide slide-hidden w-full flex flex-col" id="surabaya-slide-2">
+                <div class="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-stone-100 border border-[#D9CCBA]">
+                  <img src="surabaya-3.jpeg" alt="Merry Christmas Moments" onerror="this.src='surabaya-3.jpg'" class="w-full h-full object-cover object-center">
+                  <span class="absolute top-2.5 left-2.5 text-[10px] bg-white/90 backdrop-blur-xs px-2.5 py-0.5 rounded-full text-[#6D5D44] font-semibold shadow-xs">
+                    🎅 Festive Joy
+                  </span>
+                  <span class="absolute bottom-2 right-2 text-[9px] text-white bg-black/60 backdrop-blur-xs px-2 py-0.5 rounded-md font-mono">Special Holiday</span>
+                </div>
+                <div class="mt-3 px-1 text-center">
+                  <h4 class="font-semibold text-charcoal text-[13px]">Double Trouble with Santa!</h4>
+                  <p class="font-serif text-[12.5px] italic text-[#473E31] leading-relaxed mt-0.5">
+                    "Wish list kita waktu itu sederhana: pengen kamu cepat sarjana. And today, Santa granted our biggest prayer!"
+                  </p>
+                </div>
+              </div>
+
+              <!-- Slide 4: surabaya-4.jpeg (Foto Pose Berdua di Depan Pohon Natal Megah Bercahaya) -->
+              <div class="carousel-slide slide-hidden w-full flex flex-col" id="surabaya-slide-3">
+                <div class="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-stone-100 border border-[#DAC6B8]">
+                  <img src="surabaya-4.jpeg" alt="Under the Giant Tree" onerror="this.src='surabaya-4.jpg'" class="w-full h-full object-cover object-center">
+                  <span class="absolute top-2.5 left-2.5 text-[10px] bg-white/90 backdrop-blur-xs px-2.5 py-0.5 rounded-full text-[#6D5D44] font-semibold shadow-xs">
+                    ✨ Sparkling Lights
+                  </span>
+                  <span class="absolute bottom-2 right-2 text-[9px] text-white bg-black/60 backdrop-blur-xs px-2 py-0.5 rounded-md font-mono">Surabaya Memories</span>
+                </div>
+                <div class="mt-3 px-1 text-center">
+                  <h4 class="font-semibold text-charcoal text-[13px]">Under the Brightest Lights</h4>
+                  <p class="font-serif text-[12.5px] italic text-[#473E31] leading-relaxed mt-0.5">
+                    "Standing right beside my favorite person. Di antara ribuan lampu cantik, pencapaianmu hari ini tetap yang paling bersinar."
+                  </p>
+                </div>
+              </div>
+
+              <!-- Slide 5: surabaya-5.jpeg (Foto Makan Jajan Street Food Muka Gemas) -->
+              <div class="carousel-slide slide-hidden w-full flex flex-col" id="surabaya-slide-4">
+                <div class="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-stone-100 border border-[#D9CDBC]">
+                  <img src="surabaya-5.jpeg" alt="Street Food & Late Snacks" onerror="this.src='surabaya-5.jpg'" class="w-full h-full object-cover object-center">
+                  <span class="absolute top-2.5 left-2.5 text-[10px] bg-white/90 backdrop-blur-xs px-2.5 py-0.5 rounded-full text-[#6D5D44] font-semibold shadow-xs">
+                    🍢 Foodie Soulmates
+                  </span>
+                  <span class="absolute bottom-2 right-2 text-[9px] text-white bg-black/60 backdrop-blur-xs px-2 py-0.5 rounded-md font-mono">Late Night Munchies</span>
+                </div>
+                <div class="mt-3 px-1 text-center">
+                  <h4 class="font-semibold text-charcoal text-[13px]">Muka Kenyang tapi Hati Senang!</h4>
+                  <p class="font-serif text-[12.5px] italic text-[#473E31] leading-relaxed mt-0.5">
+                    "Definisi kebahagiaan sejati: jajan enak bareng, es teh manis, and no thesis talk for just one blessed night haha!"
+                  </p>
+                </div>
+              </div>
+
+              <!-- Carousel Arrow Navigation Buttons -->
+              <button aria-label="Foto Sebelumnya" class="absolute left-1.5 top-[38%] -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 hover:bg-white text-charcoal shadow-md border border-[#DCCEBA] flex items-center justify-center text-sm font-bold transition-all hover:scale-105 active:scale-95 z-30" onclick="prevSurabayaSlide()">
+                ‹
+              </button>
+              <button aria-label="Foto Selanjutnya" class="absolute right-1.5 top-[38%] -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 hover:bg-white text-charcoal shadow-md border border-[#DCCEBA] flex items-center justify-center text-sm font-bold transition-all hover:scale-105 active:scale-95 z-30" onclick="nextSurabayaSlide()">
+                ›
+              </button>
+            </div>
+
+            <!-- Carousel Controls & Meta Info (5 Dots) -->
+            <div class="mt-2.5 pt-2 border-t border-[#EFE8DC] flex items-center justify-between">
+              <span class="text-[10px] font-semibold tracking-wide text-[#7C6E59] bg-[#F7F2E6] px-2.5 py-0.5 rounded-full border border-[#E2D8C6]" id="surabaya-counter">
+                Foto 1 dari 5
+              </span>
+              <div class="flex items-center gap-1.5">
+                <button aria-label="Slide 1" class="surabaya-dot w-2 h-2 rounded-full transition-all duration-300 bg-champagne scale-125" onclick="goSurabayaSlide(0)"></button>
+                <button aria-label="Slide 2" class="surabaya-dot w-2 h-2 rounded-full transition-all duration-300 bg-[#D4C8B4] hover:bg-champagne/70" onclick="goSurabayaSlide(1)"></button>
+                <button aria-label="Slide 3" class="surabaya-dot w-2 h-2 rounded-full transition-all duration-300 bg-[#D4C8B4] hover:bg-champagne/70" onclick="goSurabayaSlide(2)"></button>
+                <button aria-label="Slide 4" class="surabaya-dot w-2 h-2 rounded-full transition-all duration-300 bg-[#D4C8B4] hover:bg-champagne/70" onclick="goSurabayaSlide(3)"></button>
+                <button aria-label="Slide 5" class="surabaya-dot w-2 h-2 rounded-full transition-all duration-300 bg-[#D4C8B4] hover:bg-champagne/70" onclick="goSurabayaSlide(4)"></button>
+              </div>
+              <span class="text-[10px] text-[#A2947F] italic">Geser foto ✦</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Descriptive Quote Box (Bilingual & Touching) -->
+        <div class="bg-[#FFFDF9]/95 rounded-2xl p-3 border border-[#E9DFCF] shadow-xs mb-2">
+          <p class="text-[12px] leading-relaxed text-[#4A4235] text-center">
+            <em>Every laughter, late-night snack, and chilly walk in Surabaya became the best breath of fresh air in our hectic college years.</em>
+          </p>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="grid grid-cols-2 gap-3 pt-1">
+          <button class="py-3 px-4 rounded-xl border border-[#D5C9B4] bg-[#F7F2E7] text-[#554C3E] font-medium text-sm flex items-center justify-center gap-1.5 hover:bg-[#EFE7D8] transition-colors" onclick="goToStep(3)">
+            <span>‹</span> Kembali
+          </button>
+          <button class="pulse-btn py-3 px-3 rounded-xl bg-gradient-to-r from-champagne-dark via-champagne to-champagne-light text-charcoal font-bold text-xs sm:text-sm flex items-center justify-center gap-1 shadow-md hover:shadow-lg active:scale-[0.98] transition-all" onclick="goToStep(5)">
+            <span>A Letter For You</span> ➔
+          </button>
+        </div>
+      </section>
+
+      <!-- ================= STEP 5: GRADUATION LETTER & CONFETTI ================= -->
+      <section class="step-card hidden-next flex-col justify-between flex-1 py-1" id="step-5">
+        <div class="w-full my-auto flex flex-col items-center">
+          <!-- Interactive Envelope Cover -->
+          <div class="cursor-pointer mb-2 group flex items-center gap-2 bg-[#F3ECDD] hover:bg-[#EDE3D0] px-4 py-1.5 rounded-full border border-[#DFD3BE] shadow-xs transition-all" id="envelope-trigger" onclick="toggleLetter()">
+            <span class="text-sm">💌</span>
+            <span class="text-xs font-semibold text-[#665B47]" id="envelope-btn-text">Sentuh untuk buka / tutup surat</span>
+            <span class="text-xs text-champagne-dark transform transition-transform group-hover:scale-125">✨</span>
+          </div>
+
+          <!-- Elegant Letter Sheet (Heartfelt Bilingual Letter) -->
+          <div class="letter-paper-texture w-full rounded-2xl p-5 md:p-6 shadow-xl border border-[#E8DFD0] relative overflow-hidden transition-all duration-500 max-h-[480px] overflow-y-auto no-scrollbar" id="letter-sheet">
+            <div class="absolute top-3 right-3 w-8 h-8 rounded-full bg-gradient-to-tr from-rosewax to-[#E88E75] shadow-md flex items-center justify-center text-white text-[11px] font-serif font-bold border border-white/60">
+              PV
+            </div>
+            <div class="border-b border-[#EADECC] pb-3 mb-3 pr-7 text-left">
+              <span class="text-[10px] uppercase tracking-widest text-champagne-dark font-bold">A Letter from the Heart</span>
+              <h2 class="font-serif text-[20px] sm:text-[22px] font-bold text-charcoal leading-snug mt-0.5">
+                Happy Graduation, Pricillia Verina Matatula, <span class="text-champagne-dark italic">S.Psi! 🎓🤍</span>
+              </h2>
+            </div>
+            <div class="space-y-3 text-[13px] leading-relaxed text-[#3B342A] text-left">
+              <p>
+                Melihat kamu sampai di titik ini bener-bener bikin hati rasanya hangat dan bangga luar biasa. <em>I know how tough this journey was for you.</em> Begitu banyak malam kamu harus berdamai sama rasa lelah, overthinking, revisian tanpa henti, dan perjuangan diam-diam yang cuma kamu dan Tuhan yang tahu seberapa beratnya.
+              </p>
+              <p>
+                <em>Yet against all odds, you made it with flying colors!</em> Selamat melangkah ke chapter baru, calon psikolog hebat yang hatinya selalu tulus dan penuh empati. <em>Always remember: wherever life takes you, I'll forever be in your corner cheering you on.</em>
+              </p>
+              <p class="font-serif italic text-[15px] font-semibold text-[#28231C] pt-1">
+                Once again, happy graduation, Cill! You did so wonderfully well! 🎓🤍
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-[#EADECC] flex items-center justify-between text-left">
+              <div>
+                <span class="text-[10px] text-[#8C806D] uppercase tracking-wider block">With endless love &amp; pride,</span>
+                <span class="font-serif text-sm font-bold text-charcoal italic">Your Forever Supporter</span>
+              </div>
+              <span class="text-xl">🥂💐</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Confetti Re-trigger & Replay Buttons -->
+        <div class="flex flex-col gap-2 pt-2">
+          <div class="grid grid-cols-2 gap-2.5">
+            <button class="py-2.5 px-3 rounded-xl border border-champagne/60 bg-[#FFFDF7] text-[#63553C] font-semibold text-xs flex items-center justify-center gap-1.5 shadow-xs hover:bg-[#FDF8EC] transition-all" onclick="triggerConfetti()">
+              <span>🎉</span> Celebrate Again!
+            </button>
+            <button class="py-2.5 px-3 rounded-xl border border-[#D5C9B4] bg-[#F7F2E7] text-[#554C3E] font-medium text-xs flex items-center justify-center gap-1 hover:bg-[#EFE7D8] transition-colors" onclick="goToStep(4)">
+              <span>‹</span> Kembali
+            </button>
+          </div>
+          <button class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-[#21272D] via-[#2A333C] to-[#1E2429] text-white font-semibold text-sm flex items-center justify-center gap-2 shadow-lg hover:shadow-xl active:scale-[0.98] transition-all" onclick="replayJourney()">
+            <span>Replay Journey</span>
+            <span class="text-champagne-light">↺</span>
+          </button>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Minimalist Brand Footer Indicator -->
+    <footer class="py-2.5 text-center border-t border-[#EDE4D4]/80 bg-[#FAF6EE]/50">
+      <p class="text-[10px] text-[#A19582] tracking-wider uppercase">
+        Crafted with Warmth &amp; Care • Pricillia's Special Day
+      </p>
+    </footer>
+  </main>
+
+  <!-- Navigation, Carousel, Confetti, and Audio Logic Script -->
+  <script>
+    let currentStep = 1;
+    const totalSteps = 5;
+
+    /* Audio Logic */
+    const audio = document.getElementById('bg-music');
+    const musicBtn = document.getElementById('music-btn');
+    let isPlaying = false;
+
+    function playAudio() {
+      if (audio && !isPlaying) {
+        audio.play().then(() => {
+          isPlaying = true;
+          if (musicBtn) musicBtn.textContent = '🎵';
+        }).catch(err => {
+          console.log('Autoplay ditahan browser sampai user berinteraksi:', err);
+        });
+      }
+    }
+
+    function toggleAudio() {
+      if (!audio) return;
+      if (isPlaying) {
+        audio.pause();
+        isPlaying = false;
+        if (musicBtn) musicBtn.textContent = '🔇';
+      } else {
+        audio.play().then(() => {
+          isPlaying = true;
+          if (musicBtn) musicBtn.textContent = '🎵';
+        });
+      }
+    }
+
+    function updateIndicators(step) {
+      document.getElementById('step-indicator').textContent = `Step ${step} of ${totalSteps}`;
+      
+      for (let i = 1; i <= totalSteps; i++) {
+        const bar = document.getElementById(`bar-${i}`);
+        if (i <= step) {
+          bar.classList.remove('bg-transparent');
+          bar.classList.add('bg-champagne');
+        } else {
+          bar.classList.remove('bg-champagne');
+          bar.classList.add('bg-transparent');
+        }
+      }
+    }
+
+    function goToStep(step) {
+      playAudio();
+
+      if (step < 1 || step > totalSteps || step === currentStep) return;
+
+      const currentCard = document.getElementById(`step-${currentStep}`);
+      const nextCard = document.getElementById(`step-${step}`);
+
+      if (step > currentStep) {
+        currentCard.classList.remove('active', 'hidden-next');
+        currentCard.classList.add('hidden-prev');
+        
+        nextCard.classList.remove('hidden-prev', 'hidden-next');
+        nextCard.classList.add('active');
+      } else {
+        currentCard.classList.remove('active', 'hidden-prev');
+        currentCard.classList.add('hidden-next');
+
+        nextCard.classList.remove('hidden-prev', 'hidden-next');
+        nextCard.classList.add('active');
+      }
+
+      currentStep = step;
+      updateIndicators(step);
+
+      if (step === 5) {
+        setTimeout(() => {
+          triggerConfetti();
+        }, 200);
+      }
+    }
+
+    function replayJourney() {
+      goToStep(1);
+    }
+
+    /* Carousel Logic for Step 4 (Now 5 Real Slides!) */
+    let currentSurabayaSlide = 0;
+    const totalSurabayaSlides = 5;
+
+    function goSurabayaSlide(index) {
+      if (index < 0 || index >= totalSurabayaSlides) return;
+      
+      for (let i = 0; i < totalSurabayaSlides; i++) {
+        const slideEl = document.getElementById(`surabaya-slide-${i}`);
+        if (slideEl) {
+          if (i === index) {
+            slideEl.classList.remove('slide-hidden');
+            slideEl.classList.add('slide-active');
+          } else {
+            slideEl.classList.remove('slide-active');
+            slideEl.classList.add('slide-hidden');
+          }
+        }
+      }
+
+      const dots = document.querySelectorAll('.surabaya-dot');
+      dots.forEach((dot, idx) => {
+        if (idx === index) {
+          dot.classList.add('bg-champagne', 'scale-125');
+          dot.classList.remove('bg-[#D4C8B4]');
+        } else {
+          dot.classList.remove('bg-champagne', 'scale-125');
+          dot.classList.add('bg-[#D4C8B4]');
+        }
+      });
+
+      const counterEl = document.getElementById('surabaya-counter');
+      if (counterEl) {
+        counterEl.textContent = `Foto ${index + 1} dari ${totalSurabayaSlides}`;
+      }
+
+      currentSurabayaSlide = index;
+    }
+
+    function nextSurabayaSlide() {
+      const nextIdx = (currentSurabayaSlide + 1) % totalSurabayaSlides;
+      goSurabayaSlide(nextIdx);
+    }
+
+    function prevSurabayaSlide() {
+      const prevIdx = (currentSurabayaSlide - 1 + totalSurabayaSlides) % totalSurabayaSlides;
+      goSurabayaSlide(prevIdx);
+    }
+
+    let letterExpanded = true;
+    function toggleLetter() {
+      const sheet = document.getElementById('letter-sheet');
+      const text = document.getElementById('envelope-btn-text');
+      letterExpanded = !letterExpanded;
+      if (letterExpanded) {
+        sheet.classList.remove('max-h-0', 'opacity-0', 'py-0', 'scale-95');
+        sheet.classList.add('max-h-[480px]', 'opacity-100', 'p-5', 'scale-100');
+        text.textContent = 'Sentuh untuk lipat surat';
+      } else {
+        sheet.classList.remove('max-h-[480px]', 'opacity-100', 'p-5', 'scale-100');
+        sheet.classList.add('max-h-0', 'opacity-0', 'py-0', 'scale-95');
+        text.textContent = 'Buka Surat Kenangan 💌';
+      }
+    }
+
+    /* Confetti Particle System */
+    const canvas = document.getElementById('confetti-canvas');
+    const ctx = canvas.getContext('2d');
+    let confettiParticles = [];
+    let animationFrameId = null;
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    const confettiColors = ['#D4AF37', '#F3ECE0', '#E07A5F', '#FAF6EE', '#E6C968', '#FFFFFF', '#F29C82'];
+
+    class ConfettiPiece {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * -canvas.height;
+        this.size = Math.random() * 8 + 5;
+        this.color = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+        this.speedY = Math.random() * 3 + 2.5;
+        this.speedX = (Math.random() - 0.5) * 3;
+        this.rotation = Math.random() * 360;
+        this.rotationSpeed = (Math.random() - 0.5) * 8;
+        this.opacity = 1;
+      }
+
+      update() {
+        this.y += this.speedY;
+        this.x += this.speedX;
+        this.rotation += this.rotationSpeed;
+        if (this.y > canvas.height - 20) {
+          this.opacity -= 0.02;
+        }
+      }
+
+      draw() {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate((this.rotation * Math.PI) / 180);
+        ctx.globalAlpha = Math.max(0, this.opacity);
+        ctx.fillStyle = this.color;
+        if (this.size > 8) {
+          ctx.fillRect(-this.size / 2, -this.size / 4, this.size, this.size / 2);
+        } else {
+          ctx.beginPath();
+          ctx.arc(0, 0, this.size / 2, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.restore();
+      }
+    }
+
+    function triggerConfetti() {
+      confettiParticles = [];
+      const count = 90;
+      for (let i = 0; i < count; i++) {
+        confettiParticles.push(new ConfettiPiece());
+      }
+      if (!animationFrameId) {
+        animateConfetti();
+      }
+    }
+
+    function animateConfetti() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      confettiParticles.forEach((p, idx) => {
+        p.update();
+        p.draw();
+        if (p.opacity <= 0 || p.y > canvas.height + 20) {
+          confettiParticles.splice(idx, 1);
+        }
+      });
+
+      if (confettiParticles.length > 0) {
+        animationFrameId = requestAnimationFrame(animateConfetti);
+      } else {
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = null;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    }
+  </script>
+</body>
+</html>
